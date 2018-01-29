@@ -1,14 +1,37 @@
-var demo = {};
+var demo = {}, centerX = 3500/2, centerY = 2000/2, adam, speed = 16;
 demo.state0 = function (){};
 demo.state0.prototype = {
-    preload: function(){},
+    preload: function(){
+        game.load.image('dragon', 'assets/sprites/frame-1.png');
+    },
+    
+    
     create: function (){
         game.stage.backgroundColor = '#80ff80';
         console.log('state0');
         
         addChangeStateEventListeners();
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        
+        dragon = game.add.sprite(centerX, centerY, 'dragon');
+        dragon.anchor.setTo(0.5, 0.5);
     },
-    update: function (){},
+    
+    
+    update: function (){
+        if(game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)){
+            dragon.x += speed;
+        }
+        else if(game.input.keyboard.isDown(Phaser.Keyboard.LEFT)){
+            dragon.x -= speed;
+        }
+        else if(game.input.keyboard.isDown(Phaser.Keyboard.UP)){
+            dragon.y -= speed;
+        }
+        else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
+            dragon.y += speed;
+        }
+    },
 };
 
 
