@@ -10,7 +10,6 @@ demo.state0.prototype = {
     create: function (){
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.stage.backgroundColor = '#80ff80';
-        console.log('state0');
         
         addChangeStateEventListeners();
         game.world.setBounds(0, 0, 3556, 2000);
@@ -51,15 +50,18 @@ demo.state0.prototype = {
             dragon.y -= speed;
             /* if(dragon.y < 'y-koordinaatti'){
                     dragon.y = 'sama y-koordinaatti' } */
+            dragon.animations.play('fly', 14, true);
         }
         else if(game.input.keyboard.isDown(Phaser.Keyboard.DOWN)){
             dragon.y += speed;
+            dragon.animations.play('fly', 14, true);
         }
     }
 };
 
 
 function changeState(i, stateNum){
+    console.log('state' + stateNum);
     game.state.start('state' + stateNum);
 }
 
